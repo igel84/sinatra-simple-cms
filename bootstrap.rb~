@@ -6,6 +6,8 @@ require 'data_mapper'
 require 'carrierwave'
 require 'carrierwave/datamapper'
 require 'RMagick'
+include Magick
+#include CarrierWave::RMagick
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:./db/page.db')
 
@@ -13,9 +15,12 @@ DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:./db/page.db')
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   storage :file
+  version :thumb do
+    process :resize_to_fill => [200,200]
+  end
 end
 
-class Image
+class MyImage
   include DataMapper::Resource
   property :id, Serial
   mount_uploader :image, ImageUploader, type: String
@@ -92,23 +97,42 @@ post '/admin/edit/:id' do
 end
 
 post '/tests/upload.php' do
-	@image = Image.new
+	@image = MyImage.new
   @image.image = params[:file] #загрузка изображения
   @image.save
 
+	#content_type 'image/jpg'
+  #img = File.read(@image.image.current_path)
+  #img.format = 'jpg'
+  #img.to_blob
   #для версии 5 возвращается только путь
   #return @image.image.url
 
   #content_type @image.image.content_type #'image/jpg'
   #@image.image.read()
-  content_type 'image/jpg'
-  img = RMagick::Image.read(@image.image.current_path)
-  img.format = 'jpg'
-  img.to_blob
+
+  #img = Magick::Image.read(@image.image.current_path)[0]
+  #img = File.open(@image.image.current_path)
+  #send_file @image.image.current_path, :filename => @image.image.filename, :type => 'image/jpeg'
+  #content_type 'image/jpg'
+  #img.read
+  #img.format = 'jpg'
+  #img.to_blob
+	"<img src=#{@image.image.url} />"
 end
 
 get '/tests/images.json' do
-	'[{"thumb": "/uploads/3d.jpg", "image": "/uploads/3d.jpg"}]'
+	content = '['
+	MyImage.all.each do |img|
+		content += '{"thumb": "'
+		content += img.image.thumb.url
+		content += '", "image": "'
+		content += img.image.url
+		content += '"},'
+	end
+	content = content[0,content.length-1]
+	content += ']'
+	content
 end
 
 post '/admin/create' do
