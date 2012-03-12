@@ -10,18 +10,21 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-  
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="/js/bootstrap.js"></script>
-    
-    <link href="/css/bootstrap.css" rel="stylesheet">
 
-    <script type="text/javascript" src="/js/redactor/redactor.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
+    <!--<script src="/js/bootstrap.js"></script>-->
+
+    <!--<link href="/css/bootstrap.css" rel="stylesheet">-->
+
+		<script src="/js/jquery-1.7.min.js"></script>
+		<script src="/js/jquery-ui-1.8.18.custom.min.js"></script>
+    <script type="text/javascript" src="/js/redactor/redactor.min.js"></script>
     <link rel="stylesheet" href="/js/redactor/css/redactor.css" type="text/css">
-  
+    <link rel="stylesheet" href="/js/jquery-ui-1.8.18.custom.min.css" type="text/css">
+
     <script type="text/javascript">
 	$(document).ready(function() {
-	  $('.wysiwyg').redactor({toolbar: 'mini'});
+	  $('#redactor_content').redactor();//({ css: 'wym.css' });//.redactor({toolbar: 'main'});.wysiwyg
 	});
     </script>
 
@@ -35,7 +38,7 @@
       }
       .hero-unit {padding: 10px}
     </style>
-    
+
     <link rel="shortcut icon" href="/favicon.ico">
   </head>
 
@@ -75,7 +78,7 @@
           <div class="hero-unit">
             <%= yield %>
           </div>
-          
+
         </div><!--/span-->
       </div><!--/row-->
 
@@ -88,4 +91,3 @@
     </div><!--/.fluid-container-->
   </body>
 </html>
-

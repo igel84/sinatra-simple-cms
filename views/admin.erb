@@ -16,12 +16,15 @@
 
     <link href="/css/bootstrap.css" rel="stylesheet">
 
-    <script type="text/javascript" src="/js/redactor/redactor.js"></script>
+		<!--<script src="/js/jquery-1.7.min.js"></script>-->
+		<script src="/js/jquery-ui-1.8.18.custom.min.js"></script>
+    <script type="text/javascript" src="/js/redactor/redactor.min.js"></script>
     <link rel="stylesheet" href="/js/redactor/css/redactor.css" type="text/css">
+    <link rel="stylesheet" href="/js/jquery-ui-1.8.18.custom.min.css" type="text/css">
 
     <script type="text/javascript">
 	$(document).ready(function() {
-	  $('.wysiwyg').redactor({toolbar: 'main'});
+	  $('#redactor_content').redactor();//({ css: 'wym.css' });//.redactor({toolbar: 'main'});.wysiwyg
 	});
     </script>
 

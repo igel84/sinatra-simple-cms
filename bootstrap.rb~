@@ -3,8 +3,27 @@
 require 'rubygems'
 require 'sinatra'
 require 'data_mapper'
+require 'carrierwave'
+require 'carrierwave/datamapper'
+require 'RMagick'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:./db/page.db')
+
+#конфигурация carrierwave
+class ImageUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick
+  storage :file
+end
+
+class Image
+  include DataMapper::Resource
+  property :id, Serial
+  mount_uploader :image, ImageUploader, type: String
+
+  #include DataMapper::Resource
+  #mount_uploader :image, ImageUploader, type: String
+  #field :title, type: String
+end
 
 class Page
   include DataMapper::Resource
@@ -22,6 +41,8 @@ class Page
 end
 
 DataMapper.finalize
+
+#Для изменения таблиц
 #DataMapper.auto_migrate!
 
 #Sinatra configuration
@@ -71,8 +92,23 @@ post '/admin/edit/:id' do
 end
 
 post '/tests/upload.php' do
-	"/public/img/3d.jpg"
-	#params
+	@image = Image.new
+  @image.image = params[:file] #загрузка изображения
+  @image.save
+
+  #для версии 5 возвращается только путь
+  #return @image.image.url
+
+  #content_type @image.image.content_type #'image/jpg'
+  #@image.image.read()
+  content_type 'image/jpg'
+  img = RMagick::Image.read(@image.image.current_path)
+  img.format = 'jpg'
+  img.to_blob
+end
+
+get '/tests/images.json' do
+	'[{"thumb": "/uploads/3d.jpg", "image": "/uploads/3d.jpg"}]'
 end
 
 post '/admin/create' do
