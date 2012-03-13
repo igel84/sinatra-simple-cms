@@ -5,9 +5,24 @@ require 'sinatra'
 require 'data_mapper'
 require 'carrierwave'
 require 'carrierwave/datamapper'
-require 'RMagick'
-include Magick
+require 'sass'
+
+#require 'RMagick'
+#include Magick
 #include CarrierWave::RMagick
+
+configure do
+  Tilt.register 'scss', Tilt::SassTemplate
+  set :scss, :syntax => :scss
+  #:layout=>:layout, :layout_engine => :haml
+end
+
+get '/css/:file.css' do |file|
+  content_type 'text/css', :charset => 'utf-8'
+  # no #scss method is defined (and #sass only looks for .sass files)
+  # we must call render ourself:
+  render :scss, file.to_sym, :layout => false, :views => './views' #'./public/stylesheets'
+end
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:./db/page.db')
 
@@ -70,7 +85,7 @@ end
 
 before '/admin/*' do
   protected!
-  @default_layout = :admin
+  @default_layout = :admin#, :layout_engine => :erb
 end
 
 #create
@@ -113,12 +128,15 @@ post '/tests/upload.php' do
 
   #img = Magick::Image.read(@image.image.current_path)[0]
   #img = File.open(@image.image.current_path)
-  #send_file @image.image.current_path, :filename => @image.image.filename, :type => 'image/jpeg'
   #content_type 'image/jpg'
   #img.read
   #img.format = 'jpg'
   #img.to_blob
-	"<img src=#{@image.image.url} />"
+
+	#для отправки файла целиком
+	#send_file @image.image.current_path, :filename => @image.image.filename, :type => 'image/jpeg'
+
+  "<img src=#{@image.image.url} />"
 end
 
 get '/tests/images.json' do
@@ -156,14 +174,15 @@ end
 get '/' do
   @page = Page.first(:alias => 'mainpage')
   @pages = Page.all(:alias.not => 'mainpage')
-  erb :page
+  haml(:page)#, :layout => :'layout')
+  #erb :page #, :layout=>:layout #, :layout_engine => :haml
 end
 
 get '/:alias.html' do
   @page = Page.first(:alias => params[:alias])
   not_found 'Страница не найдена' if @page.nil?
   @pages = Page.all(:alias.not => 'mainpage')
-  erb :page
+  haml :page
 end
 
 

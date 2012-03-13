@@ -11,12 +11,12 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
-    <!--<script src="/js/bootstrap.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
 
-    <!--<link href="/css/bootstrap.css" rel="stylesheet">-->
+    <link href="/css/bootstrap.css" rel="stylesheet">
 
-		<script src="/js/jquery-1.7.min.js"></script>
+		<!--<script src="/js/jquery-1.7.min.js"></script>-->
 		<script src="/js/jquery-ui-1.8.18.custom.min.js"></script>
     <script type="text/javascript" src="/js/redactor/redactor.min.js"></script>
     <link rel="stylesheet" href="/js/redactor/css/redactor.css" type="text/css">
