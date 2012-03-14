@@ -45,16 +45,16 @@ strong
 				float: left
 				display: block
 				margin-left: 120px
-				padding-top: 10px
+				padding-top: 11px
 				text-align: center
 				background: url('/img/bg-link.png') no-repeat
-				font: bold 14px 'Verdana'
+				font: bold 12px 'Verdana'
 				color: lighten(#000, 30%)
 				width: 142px
 				height: 36px
 				&:hover
 					background: url('/img/bg-vlink.png') no-repeat
-					font: bold 14px 'Verdana'
+					font: bold 12px 'Verdana'
 					color: #339
 					text-decoration: underline
 	#content

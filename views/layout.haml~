@@ -34,5 +34,5 @@
 				= yield
 		#footer
 			%span
-				&copy; 2011 - 2012 :: ЮЛИАНСАЙТ.РФ :: Создание и раскрутка сайтов&nbsp;&nbsp;|&nbsp;&nbsp;
+				&copy; 2011 - 2012 :: ЮЛИАНСАЙТ :: Создание и раскрутка сайтов&nbsp;&nbsp;|&nbsp;&nbsp;
 				%a{:href=>'mailto:master@yuliansait.ru', :title=>'Написать письмо'} master@yuliansait.ru
