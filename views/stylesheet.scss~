@@ -24,6 +24,8 @@ strong
 					color: #4d4d4d
 					font: bold 24px 'Verdana'
 					text-decoration: none
+					&:hover
+						text-decoration: underline
 			h2
 				padding: 2px
 				color: #4d4d4d
@@ -61,11 +63,36 @@ strong
 		h1
 			background: url('/img/bg-head.png') bottom right no-repeat
 			text-align: right
-			font: bold 24px 'Verdana'
+			font: bold 30px 'Verdana'
 			padding-bottom: 10px
-			color: #00000f
+			color: #4d4d4d
 			margin-bottom: 20px
+		h2
+			margin: 20px 0
+			font: bold 20px 'Verdana'
+			color: #4d4d4d
+		p
+			font: normal 14px 'Verdana'
+			color: #4d4d4d
+			line-height: 20px
+		ul
+			li
+				margin-left: 10px
+				background: url('/img/li.png') top left no-repeat
+				padding-left: 15px
+				font: normal 14px 'Verdana'
+				color: #4d4d4d
+				line-height: 24px
+		a
+			font: normal 14px 'Verdana'
+			color: darken(#4d4d4d, 30%)
+			text-decoration: none
+			&:hover
+				font: normal 14px 'Verdana'
+				color: darken(#4d4d4d, 30%)
+				text-decoration: underline
 #footer
+	margin-top: 20px
 	background-color: #e6e6e6
 	span
 		text-align: right
