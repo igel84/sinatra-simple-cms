@@ -1,6 +1,6 @@
-source :gemcutter
+source :rubygems
+#source :gemcutter
 gem 'sinatra', '1.0'
-#source :rubygems
 gem 'data_mapper'
 #gem 'sinatra'
 gem 'dm-postgres-adapter'
