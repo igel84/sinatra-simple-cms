@@ -7,43 +7,7 @@ require 'carrierwave'
 require 'carrierwave/datamapper'
 require 'sass'
 
-#require 'RMagick'
-#include Magick
-#include CarrierWave::RMagick
-
-configure do
-  Tilt.register 'scss', Tilt::SassTemplate
-  set :scss, :syntax => :scss
-  #:layout=>:layout, :layout_engine => :haml
-end
-
-get '/css/:file.css' do |file|
-  content_type 'text/css', :charset => 'utf-8'
-  # no #scss method is defined (and #sass only looks for .sass files)
-  # we must call render ourself:
-  render :scss, file.to_sym, :layout => false, :views => './views' #'./public/stylesheets'
-end
-
 DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:./db/page.db')
-
-#конфигурация carrierwave
-class ImageUploader < CarrierWave::Uploader::Base
-  include CarrierWave::MiniMagick
-  storage :file
-  version :thumb do
-    process :resize_to_fill => [100,100]
-  end
-end
-
-class MyImage
-  include DataMapper::Resource
-  property :id, Serial
-  mount_uploader :image, ImageUploader, type: String
-
-  #include DataMapper::Resource
-  #mount_uploader :image, ImageUploader, type: String
-  #field :title, type: String
-end
 
 class Page
   include DataMapper::Resource
@@ -67,6 +31,42 @@ DataMapper.finalize
 
 #Для изменения таблиц
 #DataMapper.auto_migrate!
+
+#require 'RMagick'
+#include Magick
+#include CarrierWave::RMagick
+
+configure do
+  Tilt.register 'scss', Tilt::SassTemplate
+  set :scss, :syntax => :scss
+  #:layout=>:layout, :layout_engine => :haml
+end
+
+get '/css/:file.css' do |file|
+  content_type 'text/css', :charset => 'utf-8'
+  # no #scss method is defined (and #sass only looks for .sass files)
+  # we must call render ourself:
+  render :scss, file.to_sym, :layout => false, :views => './views' #'./public/stylesheets'
+end
+
+#конфигурация carrierwave
+class ImageUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick
+  storage :file
+  version :thumb do
+    process :resize_to_fill => [100,100]
+  end
+end
+
+class MyImage
+  include DataMapper::Resource
+  property :id, Serial
+  mount_uploader :image, ImageUploader, type: String
+
+  #include DataMapper::Resource
+  #mount_uploader :image, ImageUploader, type: String
+  #field :title, type: String
+end
 
 #Sinatra configuration
 set :public_directory, './public'
