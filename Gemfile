@@ -1,6 +1,10 @@
 source :rubygems
 gem 'data_mapper'
 gem 'sinatra'
-gem 'dm-postgres-adapter'
+#gem 'dm-postgres-adapter'
 gem 'dm-sqlite-adapter'
-
+gem 'carrierwave'
+gem 'carrierwave-datamapper'
+gem 'sass'
+gem 'haml'
+gem 'mini_magick'
