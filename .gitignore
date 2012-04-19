@@ -1,5 +1,4 @@
 *.dat
-
 .*.sw[a-z]
 *.un~
 Session.vim

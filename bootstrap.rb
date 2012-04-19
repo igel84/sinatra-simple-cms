@@ -60,10 +60,10 @@ class Page
   property :updated_at,       DateTime
 end
 
-DataMapper.finalize
+#DataMapper.finalize
 
 #Для изменения таблиц
-#DataMapper.auto_migrate!
+DataMapper.auto_migrate!
 
 #Sinatra configuration
 set :public_directory, './public'
