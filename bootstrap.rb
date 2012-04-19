@@ -24,7 +24,7 @@ get '/css/:file.css' do |file|
   render :scss, file.to_sym, :layout => false, :views => './views' #'./public/stylesheets'
 end
 
-DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:./db/page.db')
+#DataMapper.setup(:default, ENV['DATABASE_URL'] || 'sqlite:./db/page.db')
 
 #конфигурация carrierwave
 class ImageUploader < CarrierWave::Uploader::Base
@@ -60,10 +60,13 @@ class Page
   property :updated_at,       DateTime
 end
 
+#
+#
+#
 #DataMapper.finalize
 
 #Для изменения таблиц
-DataMapper.auto_migrate!
+#DataMapper.auto_migrate!
 
 #Sinatra configuration
 set :public_directory, './public'
