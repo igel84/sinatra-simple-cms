@@ -15,7 +15,7 @@
 				#logo
 				#info
 					%h1
-						%a{:href=>'mailto:master@yuliansait.ru', :title=>'Написать письмо'} Заказать сайт
+						%a{:href=>'mailto:master@yuliansait.ru', :title=>'заказать сайт написав письмо'} Заказать сайт
 					%h2
 						+7 (473)
 						%strong 239-04-48
@@ -24,15 +24,15 @@
 						%strong 051-88-68
 			%ul#main-menu
 				%li
-					%a{:href=>'/'} О СТУДИИ
+					%a{:href=>'/', :title=>'веб-студия юлиансайт: информация о создании сайтов, раскрутке сайтов'} О СТУДИИ
 				%li
-					%a{:href=>'/service.html'} УСЛУГИ
+					%a{:href=>'/service.html', :title=>'разработка сайтов, создание сайтов, раскрутка сайтов, продвижение сайтов в Воронеже'} УСЛУГИ
 				%li
-					%a{:href=>'/kontakt.html'} КОНТАКТЫ
+					%a{:href=>'/kontakt.html', :title=>'контактная информация'} КОНТАКТЫ
 			#content
 				#slide
 				= yield
 		#footer
 			%span
 				&copy; 2011 - 2012 :: ЮЛИАНСАЙТ :: Создание и раскрутка сайтов&nbsp;&nbsp;|&nbsp;&nbsp;
-				%a{:href=>'mailto:master@yuliansait.ru', :title=>'Написать письмо'} master@yuliansait.ru
+				%a{:href=>'mailto:master@yuliansait.ru', :title=>'веб-студия юлиансайт: написать письмо'} master@yuliansait.ru
